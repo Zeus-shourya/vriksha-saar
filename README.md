@@ -1,31 +1,29 @@
 # Vrikshā Saār — studio website
 
-A single-page site for **Vrikshā Saār Design Collective**, an architecture, design and
+**Live:** <https://zeus-shourya.github.io/vriksha-saar/>
+
+A two-page site for **Vrikshā Saār Design Collective**, an architecture, design and
 urbanism practice with studios in Delhi, Rajkot and Sonepat.
 
 Built as plain HTML / CSS / JS — **no build step, no dependencies, no framework**.
-Drop the folder on any static host (Netlify, Vercel, GitHub Pages, cPanel, S3) and it runs.
+Drop the folder on any static host (GitHub Pages, Netlify, Vercel, cPanel, S3) and it runs.
 
 ---
 
-## ⚠️ One thing you must set before going live
+## WhatsApp
 
 The floating WhatsApp button and the WhatsApp card in the Contact section both read
-one constant. Open **`assets/js/main.js`** and change line 14:
+one constant at the top of **`assets/js/main.js`**:
 
 ```js
-var WHATSAPP_NUMBER = '91XXXXXXXXXX';   // ← country code + number, digits only
+var WHATSAPP_NUMBER = '918447396030';   // +91 84473 96030
 ```
 
-- Digits only. No `+`, no spaces, no dashes.
-- Include the country code: an Indian number `98765 43210` becomes `919876543210`.
+Digits only — country code, no `+`, no spaces. To change the number, edit that one
+line. If it is ever left blank or malformed, both links fall back to email
+(`vrikshasaar@gmail.com`) rather than breaking, and log a warning to the console.
 
-Until a valid number is set, both WhatsApp links **fall back to email**
-(`vrikshasaar@gmail.com`) so nothing is ever a dead link, and a warning is logged
-to the browser console.
-
-You can also edit the pre-filled first message on the next line
-(`WHATSAPP_MESSAGE`).
+The pre-filled first message is on the next line (`WHATSAPP_MESSAGE`).
 
 ---
 
@@ -44,8 +42,10 @@ self-contained static file server. It is a dev convenience only; don't deploy it
 
 ```
 vriksha-saar/
-├── index.html              all markup, one page, eight sections
+├── index.html              the main page, eight sections
+├── founders.html           Aakash Khurana & Jill Gajera
 ├── serve.ps1               local preview server (not for production)
+├── .nojekyll               stops GitHub Pages running Jekyll
 ├── README.md
 └── assets/
     ├── css/style.css       design tokens, components, responsive, reduced-motion
@@ -135,10 +135,48 @@ columns. Keep the row count even so the composition stays a clean rectangle.
 
 ---
 
+## Founders page
+
+`founders.html` covers both co-founders — **Aakash Khurana** (Principal Architect ·
+Urban Designer · Planner) and **Jill Gajera** (Architect). Aakash's credentials come
+from his own public profile: University of Sydney, founder of Banyan Fig, and a role
+at The Design Village.
+
+Two things there are worth a second pass by the studio:
+
+- **Jill's facts list** (`Discipline`, `Practice`, `Since`, `Studios`) is built from
+  what is publicly stated. Education and any prior practices should be added.
+- **Portraits** are the founders' own Instagram profile pictures at 150×150. They
+  hold up as circular medallions but should be swapped for proper headshots —
+  replace `assets/img/founder-aakash.jpg` and `founder-jill.jpg`, same filenames,
+  square crop, 600px or larger.
+
+Each role line is marked with an HTML comment so it is easy to find and edit.
+
+---
+
+## Deployment
+
+Hosted on GitHub Pages from the `main` branch, repo root:
+
+```bash
+git push
+```
+
+A push redeploys automatically — usually live within a minute.
+
+To attach the studio's own domain: add a `CNAME` file containing `vrikshasaar.in`,
+then point the domain's DNS at GitHub Pages. (The domain is registered but currently
+parked on GoDaddy.)
+
+---
+
 ## Before launch
 
-- [ ] Set `WHATSAPP_NUMBER` in `assets/js/main.js`
-- [ ] Point `vrikshasaar.in` at the host (the domain is registered but currently parked)
+- [x] Set `WHATSAPP_NUMBER` in `assets/js/main.js` — +91 84473 96030
+- [ ] Replace the founder portraits with proper headshots
+- [ ] Fill in Jill Gajera's education / background on `founders.html`
+- [ ] Point `vrikshasaar.in` at GitHub Pages and add a `CNAME` file
 - [ ] Swap in higher-resolution project photography where available — several images
       are Instagram reel covers at 640px wide and will soften on large displays
 - [ ] Replace `og:image` with an absolute URL once the domain is live
