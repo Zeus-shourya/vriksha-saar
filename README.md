@@ -179,4 +179,7 @@ parked on GoDaddy.)
 - [ ] Point `vrikshasaar.in` at GitHub Pages and add a `CNAME` file
 - [ ] Swap in higher-resolution project photography where available — several images
       are Instagram reel covers at 640px wide and will soften on large displays
-- [ ] Replace `og:image` with an absolute URL once the domain is live
+- [ ] When `vrikshasaar.in` goes live, find-and-replace
+      `https://zeus-shourya.github.io/vriksha-saar/` with the new domain in both HTML
+      files (canonical, `og:url`, `og:image`, JSON-LD `@id`s), `sitemap.xml` and
+      `robots.txt`
